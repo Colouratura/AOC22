@@ -18,8 +18,8 @@
   >))
 
 (define (solution name)
- (take
-  (~> name
+ (~> name
    (from-file)
    (to-elves)
-   (collect-elves)) 1))
+   (collect-elves)
+   (take _ 1)))

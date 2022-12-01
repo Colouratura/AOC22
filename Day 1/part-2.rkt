@@ -18,9 +18,9 @@
   >))
 
 (define (solution name)
- (~> (~> name
-      (from-file)
-      (to-elves)
-      (collect-elves))
-  (take _ 3)
-  (apply + _)))
+ (~> name
+    (from-file)
+    (to-elves)
+    (collect-elves)
+    (take _ 3)
+    (apply + _)))
