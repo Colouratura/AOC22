@@ -21,14 +21,7 @@
                        (string-split elf "\n"))))
        elves))
 
-;; gives the solution to which how many calories the elf carrying the most
-;; calories has
+;; gives the solution to how many calories the top three elves are carrying
 (define (solution fn)
-  (let ((calorie-list (tabulate-elves (string->elves (get-file-content fn))))
-        (cur-amount 0)
-        (cur-index 0))
-    (for ((i (in-range (length calorie-list))))
-      (cond
-        ((< cur-amount (list-ref calorie-list i)) (set! cur-amount (list-ref calorie-list i))
-                                                     (set! cur-index i))))
-    (display cur-amount)))
+  (let ((calorie-list (tabulate-elves (string->elves (get-file-content fn)))))
+    (apply + (take (sort calorie-list >) 3))))
