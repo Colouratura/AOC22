@@ -1,7 +1,7 @@
 #lang racket
 
 (require threading)
-(require seq)
+(require (prefix-in seq: seq))
 
 (define (read-in file-name)
   (port->string (open-input-file file-name) #:close? #t))
@@ -37,9 +37,9 @@
 (define (score lst)
   (~>> lst
        (map (λ (m) (list m (cond
-                             ((equal? "rock" (last m)) 1)
-                             ((equal? "paper" (last m)) 2)
-                             ((equal? "scissors" (last m)) 3)))))
+                             ((equal? "rock" (cadr m)) 1)
+                             ((equal? "paper" (cadr m)) 2)
+                             ((equal? "scissors" (cadr m)) 3)))))
        (map (λ (m) (list (first m) (let ((op (caar m))
                                          (me (cadar m))
                                          (score (cadr m)))
@@ -53,7 +53,6 @@
 (define (total lst)
   (~>> lst
        (map (λ (m) (cadr m)))
-       (sequence->list)
        (foldl + 0)))
 
 (define (solution file-name)
