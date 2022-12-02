@@ -38,11 +38,8 @@
                                          (score (last m)))
                                      (cond
                                        ((equal? op me) (+ 3 score))
-                                       ((and (equal? me "rock") (equal? op "paper")) score)
                                        ((and (equal? me "rock") (equal? op "scissors")) (+ 6 score))
                                        ((and (equal? me "paper") (equal? op "rock")) (+ 6 score))
-                                       ((and (equal? me "paper") (equal? op "scissors")) score)
-                                       ((and (equal? me "scissors") (equal? op "rock")) score)
                                        ((and (equal? me "scissors") (equal? op "paper")) (+ 6 score))
                                        (else score))))))))
 
