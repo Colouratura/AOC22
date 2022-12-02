@@ -14,18 +14,25 @@
   (~>> lst
        (map (λ (m) (list (car m) (string-trim (cadr m)))))))
 
-(define (convert c)
+(define (to-move c)
   (cond
     ((equal? c "A") "rock")
-    ((equal? c "X") "rock")
     ((equal? c "B") "paper")
-    ((equal? c "Y") "paper")
-    ((equal? c "C") "scissors")
-    ((equal? c "Z") "scissors")))
+    ((equal? c "C") "scissors")))
+
+(define (convert op me)
+    (cond
+        ((and (equal? op "A") (equal? me "X")) (list "rock" "scissors"))
+        ((and (equal? op "A") (equal? me "Z")) (list "rock" "paper"))
+        ((and (equal? op "B") (equal? me "X")) (list "paper" "rock"))
+        ((and (equal? op "B") (equal? me "Z")) (list "paper" "scissors"))
+        ((and (equal? op "C") (equal? me "X")) (list "scissors" "paper"))
+        ((and (equal? op "C") (equal? me "Z")) (list "scissors" "rock"))
+        (else (list (to-move op) (to-move op)))))
 
 (define (normalize lst)
   (~>> lst
-  (map (λ (m) (list (convert (car m)) (convert (cadr m)))))))
+  (map (λ (m) (convert (car m) (cadr m))))))
 
 (define (score lst)
   (~>> lst
